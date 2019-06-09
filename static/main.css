@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background-color: #fefefe;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a
+{
+    color: #222;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+ul,
+ol,
+dl
+{
+    list-style-type: none;
+}
+
+
+
+
+
+
+.container
+{
+    width: 95%;
+    margin: 0 auto;
+    min-width: 320px;
+}
+
+.page__content
+{
+    position: relative;
+    z-index: 0;
+}
+
+/* Виджеты */
+
+.page__widget
+{
+    margin-bottom: 20px;
+}
+
+.page__widget > div > h3
+{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+
+/* Погода */
+.widget__weather
+{
+    background-image: linear-gradient(to right, #96C275, #556e42);
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+.weather-today
+{
+    text-align: center;
+    color: #fefefe;
+}
+
+.weather-valuable
+{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.weather-valuable h3
+{
+    font-weight: 400;
+    color: #fefefe;
+}
+
+.weather-valuable span[class$="value"]
+{
+    font-size: 24px;
+    display: block;
+    color: #fefefe;
+    width: 60px;
+    text-align: left;
+    margin-left: 40px;
+    font-weight: 100;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+@media screen and (max-width: 433px)
+{
+    .weather-valuable h3
+    {
+        font-size: 14px;
+    }
+
+    .weather-valuable span[class$="value"]
+    {
+        font-size: 16px;
+        width: 40px;
+    }
+}
+
+/* Новости */
+
+
+.news__item
+{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #222222;
+    padding-bottom: 10px;
+    text-align: justify !important;
+    width: 100%;
+}
+
+.news__item h3
+{
+    text-align: justify;
+}
+
+.news__item:last-child
+{
+    padding-bottom: 50px;
+}
+
+.news__item > .news__title
+{
+    margin-bottom: 15px;
+}
+
+
+@media screen and (max-width: 433px)
+{
+    .news__item > .news__title
+    {
+        font-size: 16px;
+        text-decoration: underline;
+    }
+    .news__item > .news_desc
+    {
+        font-size: 14px;
+    }
+}
+
+
+
+
+/* Нижний блок */
+
+.menu-app
+{
+    position: fixed;
+    z-index: 8;
+    background-color: #ffffff;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0px -1px 20px #556e42;
+}
+
+.menu-app__list
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-app__item
+{
+    padding: 20px 30px;
+    max-width: 150px;
+}
+.menu-app__item_active
+{
+    background-color: #c1fa96;
+    color: #505050;
+}
+
+.menu-app__item a
+{
+    color: inherit; 
+}
+
+
+
+
+
+/* СТРАНИЦА КАРТ */
+
+.container.full-width
+{
+    width: 100%;
+    margin: 0;
+}
+
+.map
+{
+    width: 100vw;
+    min-height: calc(100vh - 61.6px);
+}
+
+
+/* СТРАНИЦА ОПРОСОВ */
+
+.polls
+{
+    padding-top: 20px;
+}
+
+.poll__item
+{
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0.5px 20px #556e42;
+}
+
+.poll__problem
+{
+    font-size: 18px;
+    text-align: justify;
+    margin-bottom: 25px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.poll__buttons
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.button
+{
+    display: inline-block;
+    padding: 10px 45px;
+    background: none;
+    border: none;
+    color: #fefefe;
+}
+
+.button_yes
+{
+    background-color: #96c275;
+}
+
+.button_no
+{
+    background-color: #fa1209;
+}
+
+
+/* ФОРМА ДЛЯ ЛОГИНА И ПАРОЛЯ */
+
+.form
+{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c1fa96;
+}
+
+form
+{
+    max-width: 50vw;
+    max-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+    padding: 10vmin
+}
+
+.form_group
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 400;
+}
+.form_group:last-child
+{
+    margin-bottom: 0;
+}
+
+.form_group > input[type="email"],
+.form_group > input[type="password"]
+{
+    padding: 5px 20px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #222222;
+}
+
+.form_group > input[type="submit"]
+{
+    background: none;
+    border: 2px solid #222222;
+    padding: 20px 0;
+    outline: none;
+    font-size: 16px;
+}

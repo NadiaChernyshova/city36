@@ -1,0 +1,82 @@
+{% extends 'template.html'%}
+
+{%block body%}
+
+<div class="page">
+
+    <div class="page__content" style="padding-bottom: 60px;">
+        <article class="page__widget polls">
+            <div class="container">
+                <div class="poll__item">
+                    <div class="poll__problem">
+                        Удовлетворены ли вы работой вашей управляющей компанией?
+                    </div>
+                    <div class="poll__buttons">
+                        <button class="button button_yes">Да</button>
+                        <button class="button button_no">Нет</button>
+                    </div>
+                </div>
+
+                <div class="poll__item">
+                    <div class="poll__problem">
+                        Сносить ли памятник на бульваре Молодцова?
+                    </div>
+                    <div class="poll__buttons">
+                        <button class="button button_yes">Да</button>
+                        <button class="button button_no">Нет</button>
+                    </div>
+                </div>
+
+                <div class="poll__item">
+                    <div class="poll__problem">
+                        Нравится ли вам новый парк на улице Палкина?
+                    </div>
+                    <div class="poll__buttons">
+                        <button class="button button_yes">Да</button>
+                        <button class="button button_no">Нет</button>
+                    </div>
+                </div>
+
+                <div class="poll__item">
+                    <div class="poll__problem">
+                        Считаете ли вы необходимостью ввести систему проездных в городе Воронеж? 
+                    </div>
+                    <div class="poll__buttons">
+                        <button class="button button_yes">Да</button>
+                        <button class="button button_no">Нет</button>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </div>
+
+    <div class="menu-app">
+        <div class="container">
+            <ul class="menu-app__list">
+                <li class="menu-app__item"><a href="/main">Главная</a></li>
+                <li class="menu-app__item"><a href="/map">Карты</a></li>
+                <li class="menu-app__item menu-app__item_active"><a href="/poll">Опросы</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    var page = document.querySelector('.page__content');
+
+    page.onclick = function (e) {
+        if (e.target.tagName != 'BUTTON') return;
+        var btn_line = e.target.parentNode;
+        console.log(btn_line);
+        btn_line.innerHTML = '<h3>Ваш голос учтен!</h3>'
+        var parent = btn_line.parentNode;
+
+        setTimeout(function () {
+            parent.style.display = 'none';
+        }, 1000)
+    }
+</script>
+
+
+{%endblock%}

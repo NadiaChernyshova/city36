@@ -1,0 +1,139 @@
+{% extends 'template.html'%}
+
+{%block body%}
+<div class="page">
+
+    <div class="container full-width">
+        <div class="page__content">
+            <div class="map" id="map">
+                <!-- Подключение карт -->
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-app">
+        <div class="container">
+            <ul class="menu-app__list">
+                <li class="menu-app__item"><a href="/main">Главная</a></li>
+                <li class="menu-app__item menu-app__item_active"><a href="/map">Карты</a></li>
+                <li class="menu-app__item"><a href="/poll">Опросы</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    ymaps.ready(init);
+
+
+    function init()
+    {
+        var geolocation = ymaps.geolocation,
+        myMap = new ymaps.Map("map", {
+            center: [55.76, 37.64],
+            zoom: 7
+        }, {
+            searchControlProvider: 'yandex#search'
+        });
+
+
+        geolocation.get({
+        provider: 'yandex',
+        mapStateAutoApply: true
+    }).then(function (result) {
+        // Красным цветом пометим положение, вычисленное через ip.
+        result.geoObjects.options.set('preset', 'islands#redCircleIcon');
+        result.geoObjects.get(0).properties.set({
+            balloonContentBody: 'Мое местоположение'
+        });
+        myMap.geoObjects.add(result.geoObjects);
+    });
+
+    geolocation.get({
+        provider: 'browser',
+        mapStateAutoApply: true
+    }).then(function (result) {
+        // Синим цветом пометим положение, полученное через браузер.
+        // Если браузер не поддерживает эту функциональность, метка не будет добавлена на карту.
+        result.geoObjects.options.set('preset', 'islands#blueCircleIcon');
+        myMap.geoObjects.add(result.geoObjects);
+    });
+
+
+    //Создание класса баллуна
+    // BalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+    //     '<div style="margin: 10px;">' +
+    //         '<form>' +
+    //             '<div>' +
+    //                 '<label for="name"><b>Имя метки</b></label>' +
+    //                 '<input type="text" id="name">' +
+    //             '</div>' +
+    //             '<div>' +
+    //                 '<label for="desc"><b>Описание</b></label>' +
+    //                 '<input type="text" id="desc">' +
+    //             '</div>' +
+    //         '</form>', {
+    //             build: function()
+    //             {
+    //                 BalloonContentLayout.superclass.build.call(this);
+    //             },
+    //             clear: function()
+    //             {
+    //                 BalloonContentLayout.superclass.clear.call(this);
+    //             }
+    //         }
+    // )
+    
+
+    var colors = ["#FF9636", "#FFE351", "#FF0106"];
+    var i = 0;
+
+
+    //Добавляем событие по килку
+    myMap.events.add('contextmenu', function(e)
+    {
+        e.preventDefault();
+        if (!myMap.balloon.isOpen())
+        {
+            var coords = e.get('coords');
+
+            var myGeoObject = new ymaps.Placemark(coords, {
+                balloonContent: '<strong>Важная метка!</strong>'
+            }, {
+                preset: 'islands#icon',
+                iconColor: colors[0]
+            })
+            
+        }
+        else
+        {
+            myMap.balloon.close();
+        }
+
+        myMap.geoObjects.add(myGeoObject);
+    });
+    myMap.events.add('click', function(e)
+    {
+        if (!myMap.balloon.isOpen())
+        {
+            var coords = e.get('coords');
+
+            var myGeoObject = new ymaps.Placemark(coords, {
+                balloonContent: '<strong>Важная метка!</strong>'
+            }, {
+                preset: 'islands#icon',
+                iconColor: colors[2]
+            })
+            
+        }
+        else
+        {
+            myMap.balloon.close();
+        }
+
+        myMap.geoObjects.add(myGeoObject);
+        i++;
+    });
+    }
+</script>
+{%endblock%}

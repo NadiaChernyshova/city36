@@ -1,0 +1,61 @@
+{% extends 'template.html'%}
+
+{%block body%}
+
+<div class="page">
+
+    <div class="page__content" style="background-color: rgba(3, 100, 133, .05);">
+        <article class="page__widget widget__weather">
+            <div class="container">
+                <h3 class="weather-today">Сегодня погода:</h3>
+                <!--Здесь код Python-->
+                <div class="weather-temperature weather-valuable">
+                    <h3>Температура: </h3><span class="temperature-value"> {{data['main']['temp']}}&deg; C</span>
+                </div>
+
+                <div class="weather-humidity weather-valuable">
+                    <h3>Влажность воздуха: </h3><span class="humidity-value"> {{data['main']['humidity']}}%</span>
+                </div>
+
+                <div class="weather-max-temperature weather-valuable">
+                    <h3>Максимальная темпреатура воздуха: </h3><span class="max-temperature-value">
+                        {{data['main']['temp_min']}}&deg; C</span>
+                </div>
+
+                <div class="weather-min-temperature weather-valuable">
+                    <h3>Минимальная температура воздуха: </h3><span class="min-temperature-value">
+                        {{data['main']['temp_max']}}&deg; C</span>
+                </div>
+            </div>
+
+        </article>
+
+        <article class="page__widget widget__news">
+            <div class="container">
+                <h3 class="widget__title_news">Последние новости</h3>
+                <ul class="news__list">
+                    <!-- Здесь код Python -->
+                    {%for new in news:%}
+                    <li class="news__item">
+                        <h3 class="news__title"><a href="{{new['link']}}">{{new['title']}}</a></h3>
+                        <p class="news_desc">{{new['desc']}}</p>
+                    </li>
+                    {%endfor%}
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <div class="menu-app">
+        <div class="container">
+            <ul class="menu-app__list">
+                <li class="menu-app__item menu-app__item_active"><a href="/main">Главная</a></li>
+                <li class="menu-app__item"><a href="/map">Карты</a></li>
+                <li class="menu-app__item"><a href="/poll">Опросы</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

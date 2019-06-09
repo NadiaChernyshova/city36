@@ -1,0 +1,52 @@
+package com.example.city36
+
+import android.content.Intent
+import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
+import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_poll.*
+
+class PollActivity : AppCompatActivity() {
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.navigation_home -> {
+                val intent = Intent(this, NewsActivity::class.java).apply {
+
+                }
+                startActivity(intent)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_map -> {
+                val intent = Intent(this, MapActivity::class.java).apply {
+
+                }
+                startActivity(intent)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_poll -> {
+                val intent = Intent(this, PollActivity::class.java).apply {
+
+                }
+                startActivity(intent)
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_poll)
+
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
+    fun pushButtonClick (view: View)
+    {
+        val PushM = Toast.makeText(this, "Ваш голос учтен!", Toast.LENGTH_LONG)
+        PushM.show()
+    }
+}
